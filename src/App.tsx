@@ -15,7 +15,7 @@ import Audio from "./lib/utils/Audio"
 
 
 function App() {
-  const { authUser, checkAuth, isCheckingAuth, onlineUsers }: any = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth }: any = useAuthStore();
   const { theme }: any = useThemeStore();
   useEffect(() => {
     checkAuth();
