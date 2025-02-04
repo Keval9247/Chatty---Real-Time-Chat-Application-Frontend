@@ -7,7 +7,7 @@ const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile }: any = useAuthStore();
   const [selectedImg, setSelectedImg] = useState<string | any>(null);
 
-  const profilePicUrl = authUser?.user.profilePic
+  const profilePicUrl = authUser?.user?.profilePic
     ? `${import.meta.env.VITE_API_BASE_URL}/${authUser?.user?.profilePic}`
     : selectedImg || "/images/userBlueShadow.jpeg";
 
@@ -32,7 +32,7 @@ const ProfilePage = () => {
     if (!authUser?.user.profilePic && selectedImg) {
       setSelectedImg(null);  // Reset if there's no profile picture after upload
     }
-  }, [authUser?.user.profilePic, selectedImg]);
+  }, [authUser?.user?.profilePic, selectedImg]);
 
   return (
     <div className="h-screen pt-20">
@@ -85,14 +85,14 @@ const ProfilePage = () => {
                 <User className="w-4 h-4" />
                 Full Name
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.user.username}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.user?.username}</p>
             </div>
             <div className="space-y-2.5">
               <div className="text-sm text-zinc-400 flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 Email Address
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.user.email}</p>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.user?.email}</p>
             </div>
           </div>
 
@@ -102,7 +102,7 @@ const ProfilePage = () => {
             <div className="space-y-3 text-sm">
               <div className="flex items-center justify-between py-2 border-b border-zinc-700">
                 <span>Member Since</span>
-                <span>{formatintoDDMMYYY((authUser?.user.createdAt)).split("T")[0]}</span>
+                <span>{formatintoDDMMYYY((authUser?.user?.createdAt)).split("T")[0]}</span>
               </div>
               <div className="flex items-center justify-between py-2">
                 <span>Account Status</span>

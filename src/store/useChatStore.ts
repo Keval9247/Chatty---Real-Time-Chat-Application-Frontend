@@ -89,7 +89,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         if (!selectedUser) return;
 
         const socket = useAuthStore.getState().socket;
-        socket.off("newMessage"); // Remove any existing listener
+        socket.off("newMessage");
         socket.on("newMessage", (newMessage: Message) => {
             const { messages } = get();
             if (
