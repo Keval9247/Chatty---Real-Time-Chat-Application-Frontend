@@ -10,7 +10,6 @@ const AudioCall: React.FC = () => {
     const [callAccepted, setCallAccepted] = useState<boolean>(false);
     const [users, setUsers] = useState<{ [key: string]: string }>({});
     console.log("🚀🚀 Your selected text is => users: ", users);
-    const [selectedUserId, setSelectedUserId] = useState("");
     const [caller, setCaller] = useState<string>("");
     const [receivingCall, setReceivingCall] = useState<boolean>(false);
     const [callerSignal, setCallerSignal] = useState<RTCSessionDescriptionInit | null>(null);

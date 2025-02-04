@@ -34,7 +34,9 @@ const ChatHeader = () => {
     const { selectedUser, setSelectedUser }: StoreState | any = useChatStore();
     const { onlineUsers }: AuthState = useAuthStore();
     const [isCalling, setIsCalling] = useState<boolean>(false);
+    console.log("🚀🚀 Your selected text is => isCalling: ", isCalling);
     const [remoteStream, setRemoteStream] = useState<MediaStream | null>(null);
+    console.log("🚀🚀 Your selected text is => remoteStream: ", remoteStream);
     const localStreamRef = useRef<MediaStream | null>(null);
     const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
     const { socket, setSocket } = useSocketStore();
