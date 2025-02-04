@@ -3,7 +3,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 import { useChatStore } from "../../store/useChatStore";
 import { io, Socket } from "socket.io-client";
 import { useEffect, useRef, useState } from "react";
-import { create, useStore } from "zustand";
+import { create } from "zustand";
 
 interface User {
     _id: string;
@@ -42,7 +42,7 @@ const ChatHeader = () => {
 
     useEffect(() => {
         if (!socket) {
-            const newSocket: Socket = io("http://localhost:4000"); // Change to your server URL
+            const newSocket: Socket = io(`${import.meta.env.VITE_API_BASE_URL}`); // Change to your server URL
             setSocket(newSocket);
         }
 

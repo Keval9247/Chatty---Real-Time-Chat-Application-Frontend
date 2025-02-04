@@ -3,7 +3,7 @@ import { axiosInstance } from '../lib/axios';
 import toast from 'react-hot-toast';
 import { io } from 'socket.io-client';
 
-const BASE_URL = "http://localhost:4000/"
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`
 
 interface AuthUser {
     id: string;
@@ -82,7 +82,9 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     login: async (data: LoginData) => {
         try {
             set({ isLoggedIn: true });
-            const response = await axiosInstance.post<{ message: string; user: AuthUser }>('/auth/login', data);
+            const response = await axiosInstance.post<{ message: string; user: AuthUser }>('/auth/login', data,
+                { withCredentials: true }
+            );
             set({ authUser: response.data.user });
             toast.success(response.data.message);
 
@@ -134,9 +136,9 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
         const { authUser } = get();
         if (!authUser || get().socket?.connected) return;
         const socket = io(BASE_URL, {
-            query: { userId: authUser?.user?._id, },
+            query: { userId: authUser?.id, },
         })
-        socket.on('connect', () => console.log('Connected to socket:', socket.id));
+        socket.on('connection', () => console.log('Connected to socket:', socket.id));
 
         set({ socket })
 
