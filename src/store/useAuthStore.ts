@@ -21,6 +21,7 @@ interface SignupData {
 interface LoginData {
     email: string;
     password: string;
+    [key: string]: any;
 }
 
 interface AuthStore {
@@ -82,9 +83,11 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     login: async (data: LoginData) => {
         try {
             set({ isLoggedIn: true });
-            const response = await axiosInstance.post<{ message: string; user: AuthUser }>('/auth/login', data,
+            const response = await axiosInstance.post<{ message: string; user: AuthUser; token: String | any }>('/auth/login', data,
                 { withCredentials: true }
             );
+            console.log("🚀🚀 Your selected text is => response: ", response);
+            localStorage.setItem("token", response?.data?.token);
             set({ authUser: response.data.user });
             toast.success(response.data.message);
 
@@ -136,9 +139,9 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
         const { authUser } = get();
         if (!authUser || get().socket?.connected) return;
         const socket = io(BASE_URL, {
-            query: { userId: authUser?.id, },
+            query: { userId: authUser?.user?._id, },
         })
-        socket.on('connection', () => console.log('Connected to socket:', socket.id));
+        socket.on('connect', () => console.log('Connected to socket:', socket.id));
 
         set({ socket })
 
