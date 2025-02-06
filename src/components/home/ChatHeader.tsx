@@ -113,7 +113,7 @@ const ChatHeader = () => {
                 <div className="flex items-center gap-3">
                     <div className="avatar">
                         <div className="size-10 rounded-full relative">
-                            <img src={selectedUser ? handleUserImage(selectedUser.profilePic) : "/images/avatar.png"} alt={selectedUser?.username || "User"} />
+                            <img src={selectedUser ? handleUserImage(selectedUser?.profilePic) : "/images/avatar.png"} alt={selectedUser?.username || "User"} />
                         </div>
                     </div>
 
