@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
   // Ensure the profile picture is updated from the backend response
   useEffect(() => {
-    if (!authUser?.user.profilePic && selectedImg) {
+    if (!authUser?.user?.profilePic && selectedImg) {
       setSelectedImg(null);  // Reset if there's no profile picture after upload
     }
   }, [authUser?.user?.profilePic, selectedImg]);
